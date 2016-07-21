@@ -16,7 +16,7 @@ namespace Server_Side_Validation_IN_MVC
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Customer", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "User", action = "AddUser", id = UrlParameter.Optional }
             );
         }
     }
