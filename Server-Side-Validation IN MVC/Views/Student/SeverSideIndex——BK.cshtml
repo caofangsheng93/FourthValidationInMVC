@@ -1,0 +1,52 @@
+﻿@model Server_Side_Validation_IN_MVC.Models.StudentServer
+@{
+    Layout = null;
+}
+@if (ViewData.ModelState.IsValid)
+{
+    if (ViewBag.Name != null)
+    { 
+    <b>
+        Name:@ViewBag.Name<br />
+        Email:@ViewBag.Email
+    </b>
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SeverSideIndex</title>
+</head>
+<body>
+    <div> 
+        @using (Html.BeginForm())
+        { 
+        @Html.ValidationSummary(true)
+            <fieldset>
+                <legend>Student</legend>
+                <div>
+                    @Html.LabelFor(model=>model.Name)
+                </div>
+                <div>
+                    @Html.EditorFor(model=>model.Name)
+                    @Html.ValidationMessageFor(model=>model.Name)
+                </div>
+                <div>
+                    @Html.LabelFor(model => model.Email)
+                </div>
+                <div>
+                    @Html.EditorFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+                <p>
+                    <input type="submit" value="Create"/>
+                </p>
+            </fieldset>
+            
+        }
+    </div>
+</body>
+</html>

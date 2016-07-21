@@ -1,0 +1,65 @@
+﻿@model Server_Side_Validation_IN_MVC.Models.Student
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        @using (Html.BeginForm())
+        { 
+        //使用ViewData.ModelState.IsValid来判断ModelState的状态
+            if (ViewData.ModelState.IsValid)
+            {
+                if (ViewBag.Name != null)
+                { 
+                <b>
+                    Name:@ViewBag.Name<br/>
+                    Email:@ViewBag.Email
+                </b>
+                }
+            }
+            
+            <fieldset>
+                <legend>Student</legend>
+                <div>
+                    @*生成label标签*@
+                    @Html.LabelFor(model=>model.Name)
+                </div>
+                <div>
+                    @*生成文本框*@
+                    @Html.EditorFor(model=>model.Name)
+                    @*不合法*@
+                    @if (!ViewData.ModelState.IsValid &&ViewData.ModelState["Name"].Errors.Count>0)
+                    { 
+               //从字典中获取错误消息：@ViewData.ModelState["Name"].Errors[0].ErrorMessage
+                    <span style="color:red">@ViewData.ModelState["Name"].Errors[0].ErrorMessage</span>
+                    }
+
+                </div>
+                <div>
+                    @Html.LabelFor(model=>model.Email)
+                </div>
+                <div>
+                    @Html.EditorFor(model=>model.Email)
+                    @if (!ViewData.ModelState.IsValid && ViewData.ModelState["Email"].Errors.Count > 0)
+                    {
+                        //从字典中获取错误消息：@ViewData.ModelState["Email"].Errors[0].ErrorMessage
+                        <span style="color:red">@ViewData.ModelState["Email"].Errors[0].ErrorMessage</span>
+                    }
+                </div>
+                <p>
+                    <input type="submit" value="Create"/>
+                </p>
+            </fieldset>
+            
+        }
+    </div>
+</body>
+</html>
