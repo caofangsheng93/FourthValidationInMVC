@@ -14,5 +14,10 @@ namespace Server_Side_Validation_IN_MVC.Controllers
 
             return View();
         }
+
+        public ActionResult AddRemoteUser()
+        {
+            return View();
+        }
     }
 }
